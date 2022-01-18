@@ -2,7 +2,7 @@ from esptool import *
 from time import sleep
 import pyboard
 
-PORT = "/dev/tty.usbserial-141240"
+PORT = "/dev/tty.usbserial-144230"
 PWD = "python"
 MPY = "firmware_ULAB_LVGL_SPIRAM.bin"
 BOOTPY = "boot.py"
