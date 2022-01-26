@@ -1,8 +1,18 @@
 from esptool import *
 from time import sleep
 import pyboard
+from sys import platform
 
-PORT = "/dev/tty.usbserial-144230"
+if platform == 'darwin':
+    # MacOS
+    from os import listdir
+    devs = listdir("/dev/")
+    for dev in devs:
+        if "usb" in dev: PORT = "/dev/"+dev
+else:
+    # Linux
+    PORT = "/dev/ttyAMA0"
+
 PWD = "python"
 MPY = "firmware_ULAB_LVGL_SPIRAM.bin"
 BOOTPY = "boot.py"
