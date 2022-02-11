@@ -21,6 +21,7 @@ It also creates a wifi hotspot on the esp, with `micropythoN` as wifi acces code
 ### Build micropython from source 
 micropython latest [source here]https://micropython.org/download/
 AMH library latest [source here](https://github.com/antonvh/mpy-robot-tools/tree/master/mpy_robot_tools)
+https://github.com/espressif/idf-eclipse-plugin/blob/master/README.md
 
 #### ESP32:
 ESP32 requires https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/
