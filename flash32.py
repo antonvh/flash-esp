@@ -13,8 +13,8 @@ else:
     # Linux
     PORT = "/dev/ttyAMA0"
 
-PWD = "python"
-MPY = "firmware_ULAB_LVGL_SPIRAM.bin"
+# factory "firmware_ULAB_LVGL_SPIRAM.bin" 
+MPY = "esp32spiram-20220117-v1.18.bin"
 BOOTPY = "boot.py"
 
 # esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
