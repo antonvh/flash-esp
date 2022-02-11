@@ -33,6 +33,7 @@ cd ports/esp32
 docker run --rm -v $PWD:/project -w /project espressif/idf make submodules
 docker run --rm -v $PWD:/project -w /project espressif/idf make BOARD=GENERIC_SPIRAM
 ```
+esptool.py --baud 115200 --port /dev/cu.usbserial-1410 read_flash 0x0 0x400000 fw-backup-AMH.bin
 esptool.py --port /dev/tty.usbserial-1420 --baud 460800 write_flash --flash_size=detect -fm dio 0 AMH-fw-backup.bin
 
 #### ESP8266:
