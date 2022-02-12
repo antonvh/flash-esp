@@ -15,7 +15,6 @@ else:
 
 # factory "firmware_ULAB_LVGL_SPIRAM.bin" 
 MPY = "esp32spiram-20220117-v1.18.bin"
-BOOTPY = "boot.py"
 
 # esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 # Erase
@@ -37,10 +36,19 @@ main(
 )
 
 sleep(2)
-print("Uploading boot.py")
 pyb = pyboard.Pyboard(PORT,115200)
 pyb.enter_raw_repl()
-pyb.fs_put(BOOTPY, "boot.py")
+print("Uploading boot.py")
+pyb.fs_put("boot.py", "boot.py")
+sleep(2)
+print("Uploading uartremote")
+pyb.fs_put("uartremote.py", "uartremote.py")
+sleep(2)
+print("Uploading main.py")
+pyb.fs_put("main.py", "main.py")
+sleep(2)
+print("Uploading test.py")
+pyb.fs_put("test.py", "test.py")
 pyb.exit_raw_repl()
 pyb.close()
 print("Done")
