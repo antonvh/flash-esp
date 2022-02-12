@@ -13,3 +13,4 @@ def read_temp():
 def add_commands(ur): # call for adding the functions in this module to UartRemote commands
   ur.add_command(led) # does not return any value
   ur.add_command(read_key,'i') # returns an integer
+  
