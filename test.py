@@ -12,11 +12,12 @@ def read_temp():
 
 def collect_data():
   # code for pulling tuple
-  return [('ABC'),('ABC',123)]
+  return [('ABC',123),('ABC',123.456)]
 
 def add_commands(ur): # call for adding the functions in this module to UartRemote commands
   ur.add_command(led) # does not return any value
   ur.add_command(read_temp,'i') # returns an integer
   ur.add_command(collect_data,'repr') # returns string
 
-  
+
+
