@@ -53,7 +53,6 @@ if not firmware_exists:
     print(f"\n[!] ERROR: Firmware file {MPY} not found!")
     exit()
 
-
 # esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 # Erase
 print("\n[*] Erasing flash")
@@ -75,7 +74,6 @@ main(
     "-z", "0x1000", MPY]
 )
 
-
 if args.init_boot:
     BOOTPY = "boot.py"
     print('\n[*] waiting for ESp32 to reboot...')
@@ -87,3 +85,4 @@ if args.init_boot:
     pyb.exit_raw_repl()
     pyb.close()
 print("[*] Done")
+

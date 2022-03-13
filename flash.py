@@ -4,7 +4,7 @@ import os
 
 PORT = "/dev/cu.usbserial-AH0692NU"
 PWD = "python"
-MPY = "esp8266-20210902-v1.17.bin"
+MPY = "esp8266-20210902-v1.18.bin"
 
 main(
     ["--port",PORT,
