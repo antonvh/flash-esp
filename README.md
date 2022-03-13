@@ -2,6 +2,7 @@
 This flashes the newest micropython firmware on an ESP8266 chip over ftdi. It also creates a wifi hotspot on the esp, with `micropythoN` as wifi acces code, and `python` as password for the REPL.
 
 ## Installation
+- pip install pyserial
 - git clone [this repo]
 - download latest micropython from https://micropython.org/download/esp8266/ in the repo clone folder
 - update firmware .bin string `MPY` in [flash.py](flash.py) to match the download 
