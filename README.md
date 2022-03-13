@@ -4,6 +4,7 @@ Tools and resources for flashing the newest micropython firmware on an ESP chips
 It also creates a wifi hotspot on the esp, with `micropythoN` as wifi acces code, and `python` as password for the REPL.
 
 ## Installation
+- pip install pyserial
 - git clone [this repo]
 - download latest micropython binary
   - [ESP32](https://micropython.org/download/esp32spiram/)
