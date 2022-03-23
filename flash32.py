@@ -78,12 +78,15 @@ main(
 
 if args.init_boot:
     BOOTPY = "boot.py"
+    TESTPY = "test_lms_esp32.py"
     print('\n[*] waiting for ESp32 to reboot...')
     sleep(2)
     print("[*] Writing boot.py")
     pyb = pyboard.Pyboard(PORT,115200)
     pyb.enter_raw_repl()
     pyb.fs_put(BOOTPY, "boot.py")
+    pyb.fs_put(TESTPY, "test_lms_esp32.py")
     pyb.exit_raw_repl()
+      
     pyb.close()
 print("[*] Done")
