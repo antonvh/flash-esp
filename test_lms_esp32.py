@@ -46,15 +46,19 @@ def test_gpio_port():
     print("[*] The corresponsing GPIO pin should be marked as [1].")
     _=input("[?] Press enter to start.")
     while True:
-       check_pins=check()
-       state=[1 if p in check_pins else 0 for p in pins]
-       print("[*] -------------------------------------")
-       print('[*] '+''.join(["GP%02d "%p for p in pins[:8]]))
-       print('[*] '+''.join([" [%1d] "%s for s in state[:8]]))
-       print('[*] '+''.join(["GP%02d "%p for p in pins[8:]]))
-       print('[*] '+''.join([" [%1d] "%s for s in state[8:]]))
-       sleep_ms(500) 
-
+       try:
+          check_pins=check()
+          state=[1 if p in check_pins else 0 for p in pins]
+          print("[*] -------------------------------------")
+          print('[*] '+''.join(["GP%02d "%p for p in pins[:8]]))
+          print('[*] '+''.join([" [%1d] "%s for s in state[:8]]))
+          print('[*] '+''.join(["GP%02d "%p for p in pins[8:]]))
+          print('[*] '+''.join([" [%1d] "%s for s in state[8:]]))
+          sleep_ms(500) 
+       except KeyboardInterrupt:
+          print('\n[!] Disconnect any connection between pins')
+          break
+     
 def test_i2c_port():
     i2c=I2C(1,sda=Pin(5),scl=Pin(4))
     print("[*] Connect an I2C device to the Grove's port")
