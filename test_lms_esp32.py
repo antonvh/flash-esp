@@ -40,6 +40,7 @@ def check():
     return(check_pins)
 
 def test_gpio_port():
+    test_pin=Pin(19,Pin.IN,pull=Pin.PULL_DOWN) # RX pin on LEGO port
     _=check() # Set LEGO RX as input, GPIO pins as as output
     print("[*] Connect the LEGO RX pin with one of the GPIO pins.")
     print("[*] Disconnect I2C devices from Grove's port.")
