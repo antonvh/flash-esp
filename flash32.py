@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(description='Flash tpool for LMS-ESP32-V1.')
 parser.add_argument('--port',  nargs='?', help='serial port')
 parser.add_argument('--baud',  nargs='?', default="460800",help='baud rate')
 parser.add_argument('--init-boot', action='store_true', default=True,help='Upload boot.py and test_lms_esp32.py')
-parser.add_argument('--no-firmware', action='store_true', default=True,help='Do not flash firmware')
+parser.add_argument('--no-firmware', action='store_true', default=False,help='Do not flash firmware')
 parser.add_argument('firmware',nargs='?',help='Micropython firmware to be written to flash')
 
 args = parser.parse_args()
@@ -77,6 +77,15 @@ if not args.no_firmware:
         "-z", "0x1000", MPY]
     )
 
+    # From then on program the firmware starting at address 0x1000:
+    # esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-20190125-v1.10.bin
+    # Flash
+    print(f"\n[*] Starting {MPY}")
+    main(
+        ["--port",PORT,
+        "--chip", "esp32",
+        "run"   ]
+    )
 
 if args.init_boot:
     BOOTPY = "boot.py"
