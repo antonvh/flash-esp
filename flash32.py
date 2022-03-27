@@ -6,14 +6,15 @@ import os.path
 from time import sleep
 from sys import platform
 
-
-
+# python 3.9 supports argparse.BooleanOptionalAction
+# as work around use action="store_true", etc.
 
 parser = argparse.ArgumentParser(description='Flash tpool for LMS-ESP32-V1.')
 parser.add_argument('--port',  nargs='?', help='serial port')
 parser.add_argument('--baud',  nargs='?', default="460800",help='baud rate')
-parser.add_argument('--init-boot', action='store_true', default=True,help='Upload boot.py and test_lms_esp32.py')
-parser.add_argument('--no-firmware', action='store_true', default=False,help='Do not flash firmware')
+parser.add_argument('--upload', action='store_true', default=False,help='Upload Python files, default does not upload')
+parser.add_argument('--no_flash', action='store_true', default=False,help='Do not flash firmware, default flashes firmware')
+
 parser.add_argument('firmware',nargs='?',help='Micropython firmware to be written to flash')
 
 args = parser.parse_args()
@@ -44,7 +45,7 @@ if not args.port: # search for serial port
         portnr=int(input("\n[?] Which port do you want to use? Enter port nr: "))
         PORT = ports_arr[portnr-1]
 
-if not args.no_firmware:
+if not args.no_flash:
     if args.firmware:
         MPY  = args.firmware
     else:
@@ -78,8 +79,8 @@ if not args.no_firmware:
     )
 
     # From then on program the firmware starting at address 0x1000:
-    # esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-20190125-v1.10.bin
-    # Flash
+    # esptool.py --chip esp32 --port /dev/ttyUSB0 run
+    # Run
     print(f"\n[*] Starting {MPY}")
     main(
         ["--port",PORT,
@@ -87,11 +88,11 @@ if not args.no_firmware:
         "run"   ]
     )
 
-if args.init_boot:
+if args.upload:
     BOOTPY = "boot.py"
     TESTPY = "test_lms_esp32.py"
     print('\n[*] waiting for ESp32 to reboot...')
-    sleep(5)
+    sleep(2)
     print("[*] Writing boot.py and test_lms_esp32.py")
     pyb = pyboard.Pyboard(PORT,115200)
     pyb.enter_raw_repl()
