@@ -22,14 +22,15 @@ print(args)
 
 # these are the VID and PID of the CH340 UART USB controller used in the LMS-ESP-V1.0
 CH340_VID_PID='1A86:7523' 
-
+CH9102='1A86:55D4'
 if not args.port: # search for serial port
     ports = serial.tools.list_ports.comports()
     print("[*] Searching for serial ports belonging to LMS-ESP32-V1 units...")
     nr=0
     ports_arr=[]
     for port, desc, hwid in sorted(ports):
-        if CH340_VID_PID in hwid:
+        print(hwid)
+        if CH9102 in hwid:
             if nr==0:
                 print("\n[*] Found the following port(s):")
             PORT = port
@@ -49,7 +50,7 @@ if not args.no_flash:
     if args.firmware:
         MPY  = args.firmware
     else:
-        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20220716-1006.bin"
+        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20220219-2337.bin"
 
     firmware_exists = os.path.exists(MPY)
     if not firmware_exists:
