@@ -49,7 +49,7 @@ if not args.no_flash:
     if args.firmware:
         MPY  = args.firmware
     else:
-        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20220716-1006.bin"
+        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20221005-2336.bin"
 
     firmware_exists = os.path.exists(MPY)
     if not firmware_exists:
@@ -96,7 +96,7 @@ if args.upload:
     print("[*] Writing boot.py and test_lms_esp32.py")
     pyb = pyboard.Pyboard(PORT,115200)
     pyb.enter_raw_repl()
-    pyb.fs_put(BOOTPY, "boot.py")
+    #pyb.fs_put(BOOTPY, "boot.py")
     pyb.fs_put(TESTPY, "test_lms_esp32.py")
     pyb.exit_raw_repl()
       
