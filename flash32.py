@@ -11,7 +11,7 @@ from sys import platform
 
 parser = argparse.ArgumentParser(description='Flash tpool for LMS-ESP32-V1.')
 parser.add_argument('--port',  nargs='?', help='serial port')
-parser.add_argument('--baud',  nargs='?', default="460800",help='baud rate')
+parser.add_argument('--baud',  nargs='?', default="921600",help='baud rate')
 parser.add_argument('--upload', action='store_true', default=False,help='Upload Python files, default does not upload')
 parser.add_argument('--no_flash', action='store_true', default=False,help='Do not flash firmware, default flashes firmware')
 
@@ -49,7 +49,7 @@ if not args.no_flash:
     if args.firmware:
         MPY  = args.firmware
     else:
-        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20220716-1006.bin"
+        MPY = "firmware_ESP32_ULAB_LVGL_SPIRAM_20221013-0025.bin"
 
     firmware_exists = os.path.exists(MPY)
     if not firmware_exists:
@@ -67,7 +67,7 @@ if not args.no_flash:
         )
 
     # From then on program the firmware starting at address 0x1000:
-    # esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-20190125-v1.10.bin
+    # esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 write_flash -z 0x1000 esp32-20190125-v1.10.bin
     # Flash
     print(f"\n[*] Flashing firmware {MPY}")
     main(
@@ -96,7 +96,7 @@ if args.upload:
     print("[*] Writing boot.py and test_lms_esp32.py")
     pyb = pyboard.Pyboard(PORT,115200)
     pyb.enter_raw_repl()
-    pyb.fs_put(BOOTPY, "boot.py")
+    # pyb.fs_put(BOOTPY, "boot.py")
     pyb.fs_put(TESTPY, "test_lms_esp32.py")
     pyb.exit_raw_repl()
       
